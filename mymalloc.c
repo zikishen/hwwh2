@@ -3,7 +3,8 @@
 #include "mymalloc.h"
 
 static char myblock[SIZE];
-
+char * a='0';
+char * b='1';
 int ini = 0;
 
 int avai(char arr[]) // check available spaces
@@ -11,7 +12,7 @@ int avai(char arr[]) // check available spaces
   int i=0;
   while(i<SIZE)
   {
-    if(arr[i]=='0')
+    if(arr[i]== a)
     {
       i++;
     }
@@ -19,12 +20,10 @@ int avai(char arr[]) // check available spaces
   return i;
 }
 
-char ** split(char myblock)
 void * mymalloc(unsigned int size, char * filename, unsigned int linenum)
 {
   if(ini = 0) //initilize the array
   {
-    char * a="0";
     int i = 0;
     while(i<5000)
     {
@@ -40,19 +39,40 @@ void * mymalloc(unsigned int size, char * filename, unsigned int linenum)
     printf("error:can't assign spaces to request")；
     return NULL;
   }
-
   int *p = (int *)(&block[0]);
-  printf("p is %d\n",p);
-  int i;
+  int* arr = (int *)calloc(SIZE,sizeof(int));
+  int j=0;
+  int met =0;
+  i=0;
   int counter = 0;
-  int *arr;
   for(i=0;i<SIZE;i++)
   {
+    if(myblock[i]=='1')
+    {
+      if(met==1)
+      {
+        arr[j]=counter;
+        met = 0;
+        j++;
+        counter =0;
+        continue;
+      }
+      counter =0;
+    }
+    else if(myblock[i]=='0')
+    {
 
+      if(met==0)
+      {
+        arr[j]=i;met=1;printf("arr[%d] is %d\n",j,arr[j]);j++;}
+      counter++;
+    }
   }
-  while(size>0)
+  i = 0;
+  if(arr[0]==0){printf("arr[%d] is %d\n",i, arr[i] );i++;}
+  while(arr[i]>0)
   {
-
+    printf("arr[%d] is %d\n",i, arr[i] );i++;
   }
 
 
