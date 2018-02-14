@@ -10,7 +10,7 @@
 
 
 //linked list structure holding memory allocations
-//typedef struct MemEntry MemEntry;
+//struct Node;
 
 
 void *mymalloc(unsigned int size, char *file, int line);
