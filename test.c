@@ -16,7 +16,7 @@ int main()
   myblock[8]= '1';
   myblock[9]= '1';
   int i = 0;
-  int size = 6;
+  int size = 2;
   while(i< SIZE)
   {
     //printf("%c\n",myblock[i]);
@@ -47,38 +47,40 @@ int main()
 
       if(met==0)
       {
-        arr[j]=i;met=1;printf("arr[%d] is %d\n",j,arr[j]);j++;}
+        arr[j]=i;met=1;//printf("arr[%d] is %d\n",j,arr[j]);
+        j++;}
       counter++;
     }
   }
   i = 0;
-  if(arr[0]==0){printf("arr[%d] is %d\n",i, arr[i] );i++;}
+  if(arr[0]==0){//printf("arr[%d] is %d\n",i, arr[i] );
+  i++;}
   int avai;
   while(arr[i]>0)
   {
     avai+=arr[i];
-    printf("arr[%d] is %d\n",i, arr[i] );i++;
+    //printf("arr[%d] is %d\n",i, arr[i] );
+    i+=2;
   }
-  printf("i is %d avai is %d\n",i,avai);
+
 //  arr[0]=1;
-int k;
- int space_arr_size = 5;
-while(size>0)
-  {
+  int k;
+ int space_arr_size = i-2;
+
     for(i=0;i<space_arr_size;i+=2)
     {
-      j = arr[i]+1;
-
-      for(k=0;k<j;k++)
+      j = i+1;
+      for(k=0;k<arr[j];k++)
       {
-        printf("size is %d\n",size );
-        myblock[k]='1';
-      //  printf("arr[%d] is %d   arr+1[%d] is %c\n",i,arr[i],j+1,myblock[j] );
+        myblock[k+arr[i]]='1';
         size--;
-        if(size==0){break;}
+        if(size==0)
+        {break;}
       }
+      if(size==0)
+      {break;}
     }
-  }
+
 
   i = 0;
   while(i<10)
