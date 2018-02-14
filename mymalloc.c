@@ -7,19 +7,6 @@ char * a='0';
 char * b='1';
 int ini = 0;
 
-int avai(char arr[]) // check available spaces
-{
-  int i=0;
-  while(i<SIZE)
-  {
-    if(arr[i]== a)
-    {
-      i++;
-    }
-  }
-  return i;
-}
-
 void * mymalloc(unsigned int size, char * filename, unsigned int linenum)
 {
   if(ini = 0) //initilize the array
@@ -31,21 +18,15 @@ void * mymalloc(unsigned int size, char * filename, unsigned int linenum)
     }
     ini = 1;
   }
-
-  int a = avai(myblock); // get the available spaces
-
-  if(size == 0 || size>a)
+  if(size == 0)
   {
-    printf("error:can't assign spaces to request")；
+    printf("error:can't assign 0 size")；
     return NULL;
   }
   int *p = (int *)(&block[0]);
   int* arr = (int *)calloc(SIZE,sizeof(int));
-  int j=0;
-  int met =0;
-  i=0;
-  int counter = 0;
-  for(i=0;i<SIZE;i++)
+  int i=0,j=0,met=0,counter=0;
+  for(i=0;i<SIZE;i++) //FIND THE INDEX OF AVAILABLE SPOT AND THE SIZE OF EACH SPOT
   {
     if(myblock[i]=='1')
     {
@@ -68,12 +49,39 @@ void * mymalloc(unsigned int size, char * filename, unsigned int linenum)
       counter++;
     }
   }
-  i = 0;
-  if(arr[0]==0){printf("arr[%d] is %d\n",i, arr[i] );i++;}
+
+  i = 1;
+  int avai;
   while(arr[i]>0)
   {
-    printf("arr[%d] is %d\n",i, arr[i] );i++;
+    avai+=arr[i];
+    printf("arr[%d] is %d\n",i, arr[i] );i+=2;
   }
+  int space_arr_size = i-2;
+
+  if(avai>size)
+  {
+    printf("error:request is too huge");
+    return NULL;
+  }
+
+  while(size>0)
+    {
+      for(i=0;i<space_arr_size;i+=2)
+      {
+        for(j=arr[i];j<arr[i+1];j++)
+        {
+          myblock[j]='1';
+          size--;
+        }
+      }
+    }
+
+
+
+
+
+
 
 
 
